@@ -7,6 +7,8 @@ import type {
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common'
 import type { ClientGrpc } from '@nestjs/microservices'
 
+import { TelegramVerifyRequest } from '@/modules/auth/dto'
+
 @Injectable()
 export class AuthClientGrpc implements OnModuleInit {
 	private authService!: AuthServiceClient
@@ -30,5 +32,13 @@ export class AuthClientGrpc implements OnModuleInit {
 
 	public refresh(request: RefreshRequest) {
 		return this.authService.refresh(request)
+	}
+
+	public telegramInit() {
+		return this.authService.telegramInit({})
+	}
+
+	public telegramVerify(request: TelegramVerifyRequest) {
+		return this.authService.telegramVerify(request)
 	}
 }
