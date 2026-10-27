@@ -2,12 +2,12 @@ import type {
 	AuthServiceClient,
 	RefreshRequest,
 	SendOtpRequest,
+	TelegramConsumeRequest,
+	TelegramVerifyRequest,
 	VerifyOtpRequest
 } from '@microcinema/contracts/gen/auth'
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common'
 import type { ClientGrpc } from '@nestjs/microservices'
-
-import { TelegramVerifyRequest } from '@/modules/auth/dto'
 
 @Injectable()
 export class AuthClientGrpc implements OnModuleInit {
@@ -40,5 +40,9 @@ export class AuthClientGrpc implements OnModuleInit {
 
 	public telegramVerify(request: TelegramVerifyRequest) {
 		return this.authService.telegramVerify(request)
+	}
+
+	public telegramConsume(request: TelegramConsumeRequest) {
+		return this.authService.telegramConsume(request)
 	}
 }
